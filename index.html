@@ -1,0 +1,452 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{font-family:'Sarabun',sans-serif!important;box-sizing:border-box}
+.app{background:#f0f4f8;padding-bottom:3rem}
+.hero{background:linear-gradient(135deg,#0f4c81 0%,#1976d2 60%,#f59e0b 100%);color:#fff;padding:1.5rem 1.25rem 1.25rem;border-radius:0 0 1.5rem 1.5rem;margin-bottom:1.5rem}
+.hero-badge{background:rgba(255,255,255,.18);color:#fff;font-size:11px;padding:3px 12px;border-radius:20px;display:inline-block;margin-bottom:.5rem}
+.hero h1{font-size:1.45rem;font-weight:700;margin-bottom:.25rem}
+.hero p{font-size:.82rem;opacity:.82;margin:0}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#6c757d;text-transform:uppercase;margin-bottom:.6rem;padding:0 .25rem}
+.card-dev{background:#fff;border-radius:1rem;box-shadow:0 1px 6px rgba(0,0,0,.06);margin-bottom:.625rem;overflow:hidden;border:1.5px solid transparent;transition:border-color .2s}
+.card-dev.on{border-color:#1976d2}
+.dev-head{display:flex;align-items:center;gap:10px;padding:.75rem 1rem;cursor:pointer}
+.dev-ico{width:38px;height:38px;border-radius:.65rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.dev-ico.on{background:#e3f0fd;color:#1976d2}
+.dev-ico.off{background:#f1f3f5;color:#adb5bd}
+.dev-name{font-size:.88rem;font-weight:600;color:#1e2a38}
+.dev-sub{font-size:.72rem;color:#6c757d;margin-top:1px}
+.form-switch .form-check-input{width:2.4em;height:1.3em;cursor:pointer}
+.form-switch .form-check-input:checked{background-color:#1976d2;border-color:#1976d2}
+.dev-body{padding:.25rem 1rem 1rem}
+.ctrl-lbl{font-size:.75rem;font-weight:600;color:#495057;margin-bottom:.35rem}
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{border:1.5px solid #dee2e6;border-radius:20px;padding:3px 11px;font-size:.75rem;cursor:pointer;color:#495057;background:#fff;transition:all .15s}
+.pill:hover{border-color:#1976d2;color:#1976d2}
+.pill.sel{background:#1976d2;border-color:#1976d2;color:#fff;font-weight:600}
+.rng-row{display:flex;align-items:center;gap:8px}
+.rng-row input[type=range]{flex:1;accent-color:#1976d2}
+.rng-val{font-size:.8rem;font-weight:600;color:#1976d2;min-width:72px;text-align:right}
+.ac-list{display:flex;flex-direction:column;gap:6px}
+.ac-item{background:#f8f9fa;border-radius:.6rem;padding:.6rem .75rem;display:flex;align-items:center;gap:8px}
+.ac-item select{font-size:.78rem;flex:1;padding:3px 6px;border-radius:.4rem;border:1px solid #dee2e6}
+.ac-item input[type=number]{width:60px;font-size:.78rem;padding:3px 6px;border-radius:.4rem;border:1px solid #dee2e6}
+.ac-item .remove-ac{background:none;border:none;color:#adb5bd;font-size:1rem;cursor:pointer;padding:0 4px}
+.ac-item .remove-ac:hover{color:#e53935}
+.add-ac-btn{font-size:.78rem;color:#1976d2;background:none;border:1.5px dashed #90caf9;border-radius:.5rem;padding:5px 14px;cursor:pointer;width:100%;margin-top:4px}
+.add-ac-btn:hover{background:#e3f0fd}
+.big-card{background:linear-gradient(135deg,#0f4c81,#1976d2);color:#fff;border-radius:1rem;padding:1.25rem;margin-bottom:.75rem;box-shadow:0 4px 18px rgba(15,76,129,.22)}
+.big-kw{font-size:2.6rem;font-weight:700;line-height:1}
+.big-unit{font-size:.95rem;opacity:.85}
+.big-sub{font-size:.78rem;opacity:.72;margin-top:.2rem}
+.payback-box{background:rgba(255,255,255,.18);border-radius:.6rem;padding:.5rem .75rem;font-size:.8rem;font-weight:600;text-align:center}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.75rem}
+.stat{background:#fff;border-radius:.875rem;padding:.875rem .75rem;text-align:center;box-shadow:0 1px 5px rgba(0,0,0,.05)}
+.stat-ico{font-size:1.3rem;margin-bottom:.2rem}
+.stat-lbl{font-size:.7rem;color:#6c757d;margin-bottom:.15rem}
+.stat-v{font-size:1.15rem;font-weight:700;color:#1e2a38}
+.stat-u{font-size:.72rem;color:#6c757d;font-weight:400}
+.sum-card{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.05);margin-bottom:.75rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;border-bottom:1px solid #f1f3f5;font-size:.82rem}
+.sum-row:last-child{border:none}
+.sum-l{color:#6c757d}
+.sum-r{font-weight:600;color:#1e2a38}
+.pkg-card{background:#fff;border-radius:1rem;box-shadow:0 1px 5px rgba(0,0,0,.05);padding:.875rem 1rem;margin-bottom:.75rem}
+.pkg-head{font-size:.78rem;font-weight:700;color:#1976d2;margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
+.pkg-row{display:flex;justify-content:space-between;font-size:.78rem;padding:3px 0;color:#495057}
+.pkg-row.best{font-weight:700;color:#1e2a38;border-top:1px solid #f1f3f5;padding-top:6px;margin-top:4px}
+.phase-tab{display:flex;gap:6px;margin-bottom:.75rem}
+.phase-btn{flex:1;padding:8px;border-radius:.5rem;border:1.5px solid #dee2e6;background:#fff;font-size:.8rem;cursor:pointer;color:#6c757d;font-family:'Sarabun',sans-serif!important;transition:all .15s}
+.phase-btn.sel{background:#1976d2;border-color:#1976d2;color:#fff;font-weight:600}
+.add-form{background:#fff;border-radius:1rem;box-shadow:0 1px 5px rgba(0,0,0,.05);padding:.875rem 1rem;margin-bottom:1rem}
+.empty{text-align:center;padding:2rem;color:#adb5bd;font-size:.85rem}
+</style>
+
+<div class="app">
+<div class="hero">
+  <div class="hero-badge">☀️ Solar Calculator</div>
+  <h1>คำนวณโซลาร์เซลล์</h1>
+  <p>เลือกอุปกรณ์ที่ใช้ช่วงกลางวัน ระบบจะแนะนำแพ็กเกจที่เหมาะสม</p>
+</div>
+
+<div class="px-3">
+
+<div class="sec-label">ประเภทไฟฟ้า</div>
+<div class="phase-tab mb-3">
+  <button class="phase-btn sel" id="tab1ph" onclick="setPhase('1ph')">⚡ 1 Phase (บ้าน)</button>
+  <button class="phase-btn" id="tab3ph" onclick="setPhase('3ph')">⚡⚡ 3 Phase (ออฟฟิศ/โรงงาน)</button>
+</div>
+
+<div class="sec-label">เครื่องปรับอากาศ</div>
+<div class="card-dev on" id="ac-card">
+  <div class="dev-head" onclick="toggleExpand('ac')">
+    <div class="dev-ico on">❄️</div>
+    <div class="flex-grow-1">
+      <div class="dev-name">เครื่องปรับอากาศ</div>
+      <div class="dev-sub" id="ac-sub">กำลังโหลด...</div>
+    </div>
+    <div class="form-check form-switch mb-0" onclick="event.stopPropagation()">
+      <input class="form-check-input" type="checkbox" id="ac-tog" checked onchange="toggleAcEnable()">
+    </div>
+  </div>
+  <div id="ac-body" class="dev-body">
+    <div class="ctrl-lbl">รายการแอร์ทุกตัว</div>
+    <div class="ac-list" id="ac-list"></div>
+    <button class="add-ac-btn" onclick="addAcItem()">+ เพิ่มแอร์อีกตัว</button>
+    <div class="mt-2">
+      <div class="ctrl-lbl">ชั่วโมงใช้งาน/วัน (ทุกตัว)</div>
+      <div class="rng-row">
+        <input type="range" min="1" max="12" step="0.5" value="6" id="ac-hrs-range" oninput="document.getElementById('ac-hrs-val').textContent=parseFloat(this.value).toFixed(1)+' ชม.';calcAll()">
+        <span class="rng-val" id="ac-hrs-val">6.0 ชม.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label mt-2">อุปกรณ์อื่นๆ</div>
+<div id="dev-list"></div>
+
+<div class="sec-label mt-2">เพิ่มอุปกรณ์เอง</div>
+<div class="add-form">
+  <div class="row g-2">
+    <div class="col-12"><input class="form-control form-control-sm" id="add-name" placeholder="ชื่ออุปกรณ์ เช่น ทีวี"></div>
+    <div class="col-6"><input class="form-control form-control-sm" type="number" id="add-watt" placeholder="วัตต์"></div>
+    <div class="col-6"><input class="form-control form-control-sm" type="number" id="add-qty" placeholder="จำนวน" value="1"></div>
+    <div class="col-6"><input class="form-control form-control-sm" type="number" id="add-hrs" placeholder="ชม./วัน" step="0.5"></div>
+    <div class="col-6"><button class="btn btn-primary btn-sm w-100" onclick="addCustom()" style="background:#1976d2;border:none;border-radius:.5rem">+ เพิ่ม</button></div>
+  </div>
+</div>
+
+<div class="sec-label">ผลการคำนวณ</div>
+<div id="results"></div>
+<p class="text-center mt-2" style="font-size:.68rem;color:#adb5bd">* Peak Sun Hours 4.5 ชม./วัน · System Loss 20% · แผง AIKO 670W · ค่าไฟ 5 บาท/หน่วย<br>ราคา excl. VAT · ราคา incl. VAT แสดงในวงเล็บ</p>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const BTU_OPTS=[{l:'9,000 BTU',v:750},{l:'12,000 BTU',v:1100},{l:'18,000 BTU',v:1600},{l:'24,000 BTU',v:2200},{l:'36,000 BTU',v:3500}];
+
+let acEnabled=true, acExpanded=true, phase='1ph';
+let acItems=[{btu:1100,qty:1}];
+let customs=[];
+
+const OTHER_DEVS=[
+  {id:'fridge',name:'ตู้เย็น',emoji:'🧊',enabled:true,expanded:false,fixedHrs:12,
+   controls:[
+     {type:'pills',label:'ขนาด',key:'size',opts:[{l:'5 คิว',v:65},{l:'7 คิว',v:90},{l:'12 คิว',v:120},{l:'18 คิว',v:180},{l:'22 คิว',v:220}],val:120},
+     {type:'range',label:'จำนวน',key:'qty',min:1,max:5,step:1,val:1,unit:'เครื่อง'}
+   ]},
+  {id:'washer',name:'เครื่องซักผ้า',emoji:'🫧',enabled:false,expanded:false,
+   controls:[
+     {type:'pills',label:'ขนาดถัง',key:'size',opts:[{l:'7 กก.',v:400},{l:'10 กก.',v:500},{l:'14 กก.',v:700},{l:'21 กก.',v:1000}],val:500},
+     {type:'range',label:'จำนวน',key:'qty',min:1,max:3,step:1,val:1,unit:'เครื่อง'},
+     {type:'range',label:'ชม./วัน',key:'hrs',min:0.5,max:6,step:0.5,val:1.5,unit:'ชม.'}
+   ]},
+  {id:'pump',name:'ปั๊มน้ำ',emoji:'💧',enabled:false,expanded:false,
+   controls:[
+     {type:'pills',label:'ขนาด',key:'hp',opts:[{l:'0.5 HP',v:375},{l:'1 HP',v:750},{l:'2 HP',v:1500},{l:'3 HP',v:2200}],val:375},
+     {type:'range',label:'จำนวน',key:'qty',min:1,max:5,step:1,val:1,unit:'ตัว'},
+     {type:'range',label:'ชม./วัน',key:'hrs',min:0.5,max:8,step:0.5,val:2,unit:'ชม.'}
+   ]},
+  {id:'light',name:'หลอดไฟ LED',emoji:'💡',enabled:true,expanded:false,
+   controls:[
+     {type:'pills',label:'วัตต์/หลอด',key:'wpp',opts:[{l:'9W',v:9},{l:'12W',v:12},{l:'18W',v:18},{l:'24W',v:24}],val:12},
+     {type:'range',label:'จำนวนหลอด',key:'qty',min:1,max:60,step:1,val:10,unit:'หลอด'},
+     {type:'range',label:'ชม./วัน',key:'hrs',min:1,max:12,step:1,val:6,unit:'ชม.'}
+   ]},
+  {id:'heater',name:'เครื่องทำน้ำร้อน',emoji:'🚿',enabled:false,expanded:false,
+   controls:[
+     {type:'pills',label:'ขนาดถัง',key:'size',opts:[{l:'30 ลิตร',v:1500},{l:'50 ลิตร',v:2500},{l:'80 ลิตร',v:3000}],val:1500},
+     {type:'range',label:'จำนวน',key:'qty',min:1,max:4,step:1,val:1,unit:'เครื่อง'},
+     {type:'range',label:'ชม./วัน',key:'hrs',min:0.5,max:4,step:0.5,val:1,unit:'ชม.'}
+   ]},
+];
+
+const PRICE_1PH=[
+  {no:'1PH-84',kw:2.68,inv:'SUN2000-3KTL-LB0',panels:4,exvat:170130,incvat:159000,roi:6.3},
+  {no:'1PH-85',kw:3.35,inv:'SUN2000-3KTL-LB0',panels:5,exvat:180830,incvat:169000,roi:5.3},
+  {no:'1PH-86',kw:4.02,inv:'SUN2000-3KTL-LB0',panels:6,exvat:200090,incvat:187000,roi:4.9},
+  {no:'1PH-87',kw:4.69,inv:'SUN2000-3KTL-LB0',panels:7,exvat:211860,incvat:198000,roi:4.5},
+  {no:'1PH-88',kw:5.36,inv:'SUN2000-3KTL-LB0',panels:8,exvat:230050,incvat:215000,roi:4.3},
+  {no:'1PH-89',kw:2.68,inv:'SUN2000-5KTL-LB0',panels:4,exvat:170130,incvat:159000,roi:6.3},
+  {no:'1PH-90',kw:3.35,inv:'SUN2000-5KTL-LB0',panels:5,exvat:186180,incvat:174000,roi:5.5},
+  {no:'1PH-91',kw:4.02,inv:'SUN2000-5KTL-LB0',panels:6,exvat:202230,incvat:189000,roi:5.0},
+  {no:'1PH-92',kw:4.69,inv:'SUN2000-5KTL-LB0',panels:7,exvat:218280,incvat:204000,roi:4.6},
+  {no:'1PH-93',kw:5.36,inv:'SUN2000-5KTL-LB0',panels:8,exvat:221490,incvat:207000,roi:4.1},
+  {no:'1PH-94',kw:6.03,inv:'SUN2000-5KTL-LB0',panels:9,exvat:250380,incvat:234000,roi:4.1},
+  {no:'1PH-95',kw:6.70,inv:'SUN2000-5KTL-LB0',panels:10,exvat:266430,incvat:249000,roi:4.0},
+  {no:'1PH-96',kw:7.37,inv:'SUN2000-5KTL-LB0',panels:11,exvat:282480,incvat:264000,roi:3.8},
+  {no:'1PH-97',kw:8.04,inv:'SUN2000-5KTL-LB0',panels:12,exvat:285690,incvat:267000,roi:3.5},
+  {no:'1PH-98',kw:8.71,inv:'SUN2000-5KTL-LB0',panels:13,exvat:300670,incvat:281000,roi:3.4},
+  {no:'1PH-99',kw:9.38,inv:'SUN2000-5KTL-LB0',panels:14,exvat:315650,incvat:295000,roi:3.3},
+  {no:'1PH-100',kw:10.05,inv:'SUN2000-5KTL-LB0',panels:15,exvat:330630,incvat:309000,roi:3.3},
+  {no:'1PH-101',kw:10.72,inv:'SUN2000-5KTL-LB0',panels:16,exvat:345610,incvat:323000,roi:3.2},
+  {no:'1PH-102',kw:2.68,inv:'SUN2000-10KTL-LC0',panels:4,exvat:202230,incvat:189000,roi:7.5},
+  {no:'1PH-103',kw:3.35,inv:'SUN2000-10KTL-LC0',panels:5,exvat:218280,incvat:204000,roi:6.4},
+  {no:'1PH-104',kw:4.02,inv:'SUN2000-10KTL-LC0',panels:6,exvat:225770,incvat:211000,roi:5.6},
+  {no:'1PH-105',kw:4.69,inv:'SUN2000-10KTL-LC0',panels:7,exvat:243960,incvat:228000,roi:5.1},
+  {no:'1PH-106',kw:5.36,inv:'SUN2000-10KTL-LC0',panels:8,exvat:262150,incvat:245000,roi:4.9},
+  {no:'1PH-107',kw:6.03,inv:'SUN2000-10KTL-LC0',panels:9,exvat:280340,incvat:262000,roi:4.6},
+  {no:'1PH-108',kw:6.70,inv:'SUN2000-10KTL-LC0',panels:10,exvat:298530,incvat:279000,roi:4.4},
+  {no:'1PH-109',kw:7.37,inv:'SUN2000-10KTL-LC0',panels:11,exvat:293180,incvat:274000,roi:3.9},
+  {no:'1PH-110',kw:8.04,inv:'SUN2000-10KTL-LC0',panels:12,exvat:309230,incvat:289000,roi:3.8},
+  {no:'1PH-111',kw:8.71,inv:'SUN2000-10KTL-LC0',panels:13,exvat:325280,incvat:304000,roi:3.7},
+  {no:'1PH-112',kw:9.38,inv:'SUN2000-10KTL-LC0',panels:14,exvat:326350,incvat:305000,roi:3.5},
+  {no:'1PH-113',kw:10.72,inv:'SUN2000-10KTL-LC0',panels:16,exvat:347750,incvat:325000,roi:3.2},
+  {no:'1PH-114',kw:12.06,inv:'SUN2000-10KTL-LC0',panels:18,exvat:367010,incvat:343000,roi:3.0},
+  {no:'1PH-115',kw:13.40,inv:'SUN2000-10KTL-LC0',panels:20,exvat:394830,incvat:369000,roi:2.9},
+  {no:'1PH-116',kw:14.74,inv:'SUN2000-10KTL-LC0',panels:22,exvat:422650,incvat:395000,roi:2.8},
+  {no:'1PH-117',kw:16.08,inv:'SUN2000-10KTL-LC0',panels:24,exvat:450470,incvat:421000,roi:2.8},
+  {no:'1PH-118',kw:17.42,inv:'SUN2000-10KTL-LC0',panels:26,exvat:478290,incvat:447000,roi:2.7},
+  {no:'1PH-119',kw:18.76,inv:'SUN2000-10KTL-LC0',panels:28,exvat:506110,incvat:473000,roi:2.7},
+  {no:'1PH-120',kw:20.10,inv:'SUN2000-10KTL-LC0',panels:30,exvat:533930,incvat:499000,roi:2.6},
+  {no:'1PH-121',kw:21.44,inv:'SUN2000-10KTL-LC0',panels:32,exvat:561750,incvat:525000,roi:2.6},
+];
+
+const PRICE_3PH=[
+  {no:'3PH-110',kw:4.02,inv:'SUN2000-5KTL-MAP0',panels:6,exvat:209720,incvat:196000,roi:4.8},
+  {no:'3PH-111',kw:4.69,inv:'SUN2000-5KTL-MAP0',panels:7,exvat:217745,incvat:203500,roi:4.3},
+  {no:'3PH-112',kw:5.36,inv:'SUN2000-5KTL-MAP0',panels:8,exvat:234758,incvat:219400,roi:4.1},
+  {no:'3PH-113',kw:6.03,inv:'SUN2000-5KTL-MAP0',panels:9,exvat:246635,incvat:230500,roi:3.9},
+  {no:'3PH-114',kw:6.70,inv:'SUN2000-5KTL-MAP0',panels:10,exvat:261080,incvat:244000,roi:3.7},
+  {no:'3PH-115',kw:7.37,inv:'SUN2000-5KTL-MAP0',panels:11,exvat:275525,incvat:257500,roi:3.6},
+  {no:'3PH-116',kw:8.04,inv:'SUN2000-5KTL-MAP0',panels:12,exvat:283550,incvat:265000,roi:3.5},
+  {no:'3PH-117',kw:8.71,inv:'SUN2000-5KTL-MAP0',panels:13,exvat:297460,incvat:278000,roi:3.5},
+  {no:'3PH-118',kw:9.38,inv:'SUN2000-5KTL-MAP0',panels:14,exvat:311370,incvat:291000,roi:3.5},
+  {no:'3PH-119',kw:10.05,inv:'SUN2000-5KTL-MAP0',panels:15,exvat:325280,incvat:304000,roi:3.5},
+  {no:'3PH-120',kw:10.72,inv:'SUN2000-5KTL-MAP0',panels:16,exvat:339190,incvat:317000,roi:3.5},
+  {no:'3PH-121',kw:4.02,inv:'SUN2000-10KTL-MAP0',panels:6,exvat:239680,incvat:224000,roi:6.5},
+  {no:'3PH-122',kw:4.69,inv:'SUN2000-10KTL-MAP0',panels:7,exvat:247170,incvat:231000,roi:5.7},
+  {no:'3PH-123',kw:5.36,inv:'SUN2000-10KTL-MAP0',panels:8,exvat:255730,incvat:239000,roi:5.2},
+  {no:'3PH-124',kw:6.03,inv:'SUN2000-10KTL-MAP0',panels:9,exvat:271780,incvat:254000,roi:4.9},
+  {no:'3PH-125',kw:6.70,inv:'SUN2000-10KTL-MAP0',panels:10,exvat:282480,incvat:264000,roi:4.6},
+  {no:'3PH-126',kw:7.37,inv:'SUN2000-10KTL-MAP0',panels:11,exvat:297995,incvat:278500,roi:4.4},
+  {no:'3PH-127',kw:8.04,inv:'SUN2000-10KTL-MAP0',panels:12,exvat:313510,incvat:293000,roi:4.3},
+  {no:'3PH-128',kw:8.71,inv:'SUN2000-10KTL-MAP0',panels:13,exvat:329025,incvat:307500,roi:4.1},
+  {no:'3PH-129',kw:9.38,inv:'SUN2000-10KTL-MAP0',panels:14,exvat:344540,incvat:322000,roi:4.0},
+  {no:'3PH-130',kw:10.72,inv:'SUN2000-10KTL-MAP0',panels:16,exvat:358450,incvat:335000,roi:3.7},
+  {no:'3PH-131',kw:12.06,inv:'SUN2000-10KTL-MAP0',panels:18,exvat:387340,incvat:362000,roi:3.5},
+  {no:'3PH-132',kw:13.40,inv:'SUN2000-10KTL-MAP0',panels:20,exvat:405530,incvat:379000,roi:3.3},
+  {no:'3PH-133',kw:14.74,inv:'SUN2000-10KTL-MAP0',panels:22,exvat:421580,incvat:394000,roi:3.1},
+  {no:'3PH-134',kw:16.08,inv:'SUN2000-10KTL-MAP0',panels:24,exvat:435490,incvat:407000,roi:3.0},
+  {no:'3PH-135',kw:17.42,inv:'SUN2000-10KTL-MAP0',panels:26,exvat:461170,incvat:431000,roi:2.9},
+  {no:'3PH-136',kw:18.76,inv:'SUN2000-10KTL-MAP0',panels:28,exvat:471870,incvat:441000,roi:2.8},
+  {no:'3PH-137',kw:20.10,inv:'SUN2000-10KTL-MAP0',panels:30,exvat:496480,incvat:464000,roi:2.7},
+  {no:'3PH-138',kw:21.44,inv:'SUN2000-10KTL-MAP0',panels:32,exvat:521090,incvat:487000,roi:2.7},
+  {no:'3PH-139',kw:8.04,inv:'SUN2000-20KTL-MB0',panels:12,exvat:358450,incvat:335000,roi:4.9},
+  {no:'3PH-140',kw:9.38,inv:'SUN2000-20KTL-MB0',panels:14,exvat:391620,incvat:366000,roi:4.6},
+  {no:'3PH-141',kw:10.72,inv:'SUN2000-20KTL-MB0',panels:16,exvat:424790,incvat:397000,roi:4.4},
+  {no:'3PH-142',kw:12.06,inv:'SUN2000-20KTL-MB0',panels:18,exvat:448330,incvat:419000,roi:4.1},
+  {no:'3PH-143',kw:13.40,inv:'SUN2000-20KTL-MB0',panels:20,exvat:459030,incvat:429000,roi:3.8},
+  {no:'3PH-144',kw:14.74,inv:'SUN2000-20KTL-MB0',panels:22,exvat:477220,incvat:446000,roi:3.6},
+  {no:'3PH-145',kw:16.08,inv:'SUN2000-20KTL-MB0',panels:24,exvat:506110,incvat:473000,roi:3.5},
+  {no:'3PH-146',kw:17.42,inv:'SUN2000-20KTL-MB0',panels:26,exvat:535000,incvat:500000,roi:3.4},
+  {no:'3PH-147',kw:18.76,inv:'SUN2000-20KTL-MB0',panels:28,exvat:548910,incvat:513000,roi:3.2},
+  {no:'3PH-148',kw:20.10,inv:'SUN2000-20KTL-MB0',panels:30,exvat:560680,incvat:524000,roi:3.1},
+  {no:'3PH-149',kw:21.44,inv:'SUN2000-20KTL-MB0',panels:32,exvat:570310,incvat:533000,roi:2.9},
+  {no:'3PH-150',kw:24.12,inv:'SUN2000-20KTL-MB0',panels:36,exvat:602410,incvat:563000,roi:2.7},
+  {no:'3PH-153',kw:30.15,inv:'SUN2000-20KTL-MB0',panels:45,exvat:713155,incvat:666500,roi:2.6},
+  {no:'3PH-154',kw:32.16,inv:'SUN2000-20KTL-MB0',panels:48,exvat:750070,incvat:701000,roi:2.6},
+  {no:'3PH-155',kw:34.17,inv:'SUN2000-20KTL-MB0',panels:51,exvat:786985,incvat:735500,roi:2.5},
+  {no:'3PH-156',kw:34.84,inv:'SUN2000-20KTL-MB0',panels:52,exvat:799290,incvat:747000,roi:2.5},
+  {no:'3PH-157',kw:37.52,inv:'SUN2000-20KTL-MB0',panels:56,exvat:848510,incvat:793000,roi:2.5},
+  {no:'3PH-158',kw:40.20,inv:'SUN2000-20KTL-MB0',panels:60,exvat:897730,incvat:839000,roi:2.5},
+  {no:'3PH-159',kw:42.88,inv:'SUN2000-20KTL-MB0',panels:64,exvat:946950,incvat:885000,roi:2.4},
+];
+
+function setPhase(p){
+  phase=p;
+  document.getElementById('tab1ph').classList.toggle('sel',p==='1ph');
+  document.getElementById('tab3ph').classList.toggle('sel',p==='3ph');
+  calcAll();
+}
+
+function getAcHrs(){return parseFloat(document.getElementById('ac-hrs-range').value)||6;}
+
+function renderAcList(){
+  const el=document.getElementById('ac-list');
+  el.innerHTML='';
+  acItems.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='ac-item';
+    let opts=BTU_OPTS.map(o=>`<option value="${o.v}" ${item.btu===o.v?'selected':''}>${o.l}</option>`).join('');
+    d.innerHTML=`
+      <select onchange="acItems[${i}].btu=parseInt(this.value);calcAll()">${opts}</select>
+      <input type="number" value="${item.qty}" min="1" max="10" onchange="acItems[${i}].qty=parseInt(this.value)||1;calcAll()" placeholder="จำนวน">
+      <span style="font-size:.72rem;color:#6c757d">ตัว</span>
+      ${acItems.length>1?`<button class="remove-ac" onclick="acItems.splice(${i},1);renderAcList();calcAll()">✕</button>`:''}
+    `;
+    el.appendChild(d);
+  });
+  updateAcSub();
+}
+
+function updateAcSub(){
+  let totalW=acItems.reduce((s,a)=>s+a.btu*a.qty,0);
+  let totalQty=acItems.reduce((s,a)=>s+a.qty,0);
+  const hrs=getAcHrs();
+  document.getElementById('ac-sub').textContent=acEnabled
+    ?`${totalQty} ตัว · รวม ${totalW.toLocaleString()}W · ${hrs.toFixed(1)} ชม./วัน`
+    :'ปิดอยู่';
+  document.getElementById('ac-card').className='card-dev'+(acEnabled?' on':'');
+  document.getElementById('ac-body').style.display=acExpanded&&acEnabled?'block':'none';
+}
+
+function addAcItem(){acItems.push({btu:1100,qty:1});renderAcList();calcAll();}
+function toggleAcEnable(){acEnabled=document.getElementById('ac-tog').checked;updateAcSub();calcAll();}
+function toggleExpand(id){
+  if(id==='ac'){acExpanded=!acExpanded;updateAcSub();return;}
+  const d=OTHER_DEVS.find(x=>x.id===id);
+  if(d&&d.enabled)d.expanded=!d.expanded;
+  renderOthers();
+}
+
+function getV(d,key){const c=d.controls.find(x=>x.key===key);return c?c.val:1;}
+function getWatt(d){
+  if(d.id==='light')return getV(d,'qty')*getV(d,'wpp');
+  const s=d.controls.find(c=>['size','hp'].includes(c.key));return s?s.val:0;
+}
+function getQty(d){return d.id==='light'?1:getV(d,'qty');}
+function getHrs(d){return d.fixedHrs?d.fixedHrs:getV(d,'hrs');}
+
+function getOtherDesc(d){
+  if(!d.enabled)return 'ปิดอยู่';
+  if(d.id==='light')return `${getV(d,'qty')} หลอด × ${getV(d,'wpp')}W · ${getHrs(d)} ชม./วัน`;
+  if(d.fixedHrs)return `${getWatt(d)}W × ${getQty(d)} · ตลอดวัน`;
+  return `${getWatt(d)}W × ${getQty(d)} · ${getHrs(d)} ชม./วัน`;
+}
+
+function renderOthers(){
+  const el=document.getElementById('dev-list');
+  el.innerHTML='';
+  [...OTHER_DEVS,...customs.map((c,i)=>({...c,_ci:i}))].forEach(d=>{
+    const div=document.createElement('div');
+    const isCustom=d._ci!==undefined;
+    div.className='card-dev'+(d.enabled?' on':'');
+    let bodyHtml='';
+    if(!isCustom&&d.expanded&&d.enabled){
+      bodyHtml='<div class="dev-body">';
+      d.controls.forEach(c=>{
+        bodyHtml+=`<div class="mb-2"><div class="ctrl-lbl">${c.label}</div>`;
+        if(c.type==='pills'){
+          bodyHtml+=`<div class="pills">`;
+          c.opts.forEach(o=>{bodyHtml+=`<button class="pill${c.val===o.v?' sel':''}" onclick="setPill('${d.id}','${c.key}',${o.v})">${o.l}</button>`;});
+          bodyHtml+=`</div>`;
+        } else {
+          const v=c.val;
+          bodyHtml+=`<div class="rng-row"><input type="range" min="${c.min}" max="${c.max}" step="${c.step}" value="${v}" oninput="setRange('${d.id}','${c.key}',this.value,this)"><span class="rng-val" id="rv-${d.id}-${c.key}">${v%1===0?v:v.toFixed(1)} ${c.unit}</span></div>`;
+        }
+        bodyHtml+=`</div>`;
+      });
+      bodyHtml+='</div>';
+    }
+    div.innerHTML=`<div class="dev-head" onclick="toggleExpand('${d.id}')">
+      <div class="dev-ico ${d.enabled?'on':'off'}">${d.emoji||'🔌'}</div>
+      <div class="flex-grow-1">
+        <div class="dev-name">${d.name}</div>
+        <div class="dev-sub">${isCustom?(d.enabled?`${d.watt}W × ${d.qty} · ${d.hrs} ชม./วัน`:'ปิดอยู่'):getOtherDesc(d)}</div>
+      </div>
+      ${isCustom?`<button style="background:none;border:none;color:#adb5bd;font-size:.85rem;cursor:pointer" onclick="event.stopPropagation();customs.splice(${d._ci},1);renderOthers();calcAll()">✕</button>`:''}
+      <div class="form-check form-switch mb-0" onclick="event.stopPropagation()">
+        <input class="form-check-input" type="checkbox" ${d.enabled?'checked':''} onchange="${isCustom?`customs[${d._ci}].enabled=this.checked`:`toggleOther('${d.id}')`};renderOthers();calcAll()">
+      </div>
+    </div>${bodyHtml}`;
+    el.appendChild(div);
+  });
+}
+
+function toggleOther(id){const d=OTHER_DEVS.find(x=>x.id===id);d.enabled=!d.enabled;d.expanded=d.enabled;}
+function setPill(did,key,val){const d=OTHER_DEVS.find(x=>x.id===did);d.controls.find(x=>x.key===key).val=val;renderOthers();calcAll();}
+function setRange(did,key,val,el){
+  const d=OTHER_DEVS.find(x=>x.id===did);
+  const c=d.controls.find(x=>x.key===key);
+  c.val=parseFloat(val);
+  const sp=document.getElementById(`rv-${did}-${key}`);
+  if(sp)sp.textContent=(c.val%1===0?c.val:c.val.toFixed(1))+' '+c.unit;
+  calcAll();
+}
+
+function addCustom(){
+  const name=document.getElementById('add-name').value.trim();
+  const watt=parseFloat(document.getElementById('add-watt').value);
+  const qty=parseInt(document.getElementById('add-qty').value)||1;
+  const hrs=parseFloat(document.getElementById('add-hrs').value)||4;
+  if(!name||!watt)return;
+  customs.push({id:'c'+Date.now(),name,emoji:'🔌',watt,qty,hrs,enabled:true,expanded:false});
+  ['add-name','add-watt','add-hrs'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('add-qty').value='1';
+  renderOthers();calcAll();
+}
+
+function findPackage(needKw,priceList){
+  const list=priceList.filter(p=>p.kw>=needKw);
+  if(!list.length)return priceList[priceList.length-1];
+  list.sort((a,b)=>a.exvat-b.exvat);
+  return list[0];
+}
+
+function calcAll(){
+  let totalWh=0;
+  if(acEnabled){
+    const hrs=getAcHrs();
+    acItems.forEach(a=>totalWh+=a.btu*a.qty*hrs);
+  }
+  OTHER_DEVS.forEach(d=>{if(d.enabled)totalWh+=getWatt(d)*getQty(d)*getHrs(d);});
+  customs.forEach(d=>{if(d.enabled)totalWh+=d.watt*d.qty*d.hrs;});
+  updateAcSub();
+
+  const el=document.getElementById('results');
+  if(!totalWh){el.innerHTML='<div class="empty">เปิดอุปกรณ์อย่างน้อย 1 รายการ</div>';return;}
+
+  const PSH=4.5,LOSS=0.80;
+  const needKw=totalWh/1000/PSH/LOSS;
+  const dailyKwh=+(totalWh/1000).toFixed(1);
+  const saving=Math.round(dailyKwh*30*5);
+
+  const priceList=phase==='1ph'?PRICE_1PH:PRICE_3PH;
+  const bestPkg=findPackage(needKw,priceList);
+
+  const altPkgs=priceList.filter(p=>p.kw>=needKw).sort((a,b)=>a.exvat-b.exvat).slice(0,3);
+  const calcRoi=Math.ceil(bestPkg.incvat/saving/12);
+
+  el.innerHTML=`
+    <div class="big-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div style="font-size:.75rem;opacity:.75;margin-bottom:.2rem">แพ็กเกจที่แนะนำ · ${bestPkg.no}</div>
+          <div><span class="big-kw">${bestPkg.kw}</span><span class="big-unit"> kWp</span></div>
+          <div class="big-sub">${bestPkg.panels} แผง · ${bestPkg.inv}</div>
+        </div>
+        <div class="payback-box">คืนทุน<br>${calcRoi} ปี</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-ico">⚡</div><div class="stat-lbl">พลังงาน/วัน</div><div class="stat-v">${dailyKwh}<span class="stat-u"> kWh</span></div></div>
+      <div class="stat"><div class="stat-ico">💰</div><div class="stat-lbl">ประหยัด/เดือน</div><div class="stat-v">${saving.toLocaleString()}<span class="stat-u"> ฿</span></div></div>
+      <div class="stat"><div class="stat-ico">🏷️</div><div class="stat-lbl">ราคา excl.VAT</div><div class="stat-v">${bestPkg.exvat.toLocaleString()}<span class="stat-u"> ฿</span></div></div>
+      <div class="stat"><div class="stat-ico">📋</div><div class="stat-lbl">ราคา incl.VAT</div><div class="stat-v">${bestPkg.incvat.toLocaleString()}<span class="stat-u"> ฿</span></div></div>
+    </div>
+
+    <div class="sum-card">
+      <div class="sum-row"><span class="sum-l">ขนาดที่ต้องการ (คำนวณ)</span><span class="sum-r">${needKw.toFixed(2)} kWp</span></div>
+      <div class="sum-row"><span class="sum-l">แพ็กเกจที่เลือก</span><span class="sum-r">${bestPkg.kw} kWp · ${bestPkg.panels} แผง</span></div>
+      <div class="sum-row"><span class="sum-l">อินเวอร์เตอร์</span><span class="sum-r">${bestPkg.inv}</span></div>
+      <div class="sum-row"><span class="sum-l">ประหยัด/ปี</span><span class="sum-r">${(saving*12).toLocaleString()} ฿</span></div>
+    </div>
+
+    ${altPkgs.length>1?`<div class="pkg-card">
+      <div class="pkg-head">📦 แพ็กเกจใกล้เคียง</div>
+      ${altPkgs.map((p,i)=>`<div class="pkg-row${i===0?' best':''}">
+        <span>${p.no} · ${p.kw} kWp (${p.panels} แผง)</span>
+        <span>${p.incvat.toLocaleString()} ฿${i===0?' ✓':''}</span>
+      </div>`).join('')}
+    </div>`:''}`;
+}
+
+renderAcList();
+renderOthers();
+calcAll();
+</script>
